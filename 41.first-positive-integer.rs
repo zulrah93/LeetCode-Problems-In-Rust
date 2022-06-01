@@ -3,20 +3,19 @@ impl Solution {
         if nums.is_empty() {
             return 1;
         }
-        
-        let mut sorted_nums : Vec<&i32> = nums.iter().filter(|x| *x > &0).collect();
-        
+
+        let mut sorted_nums: Vec<&i32> = nums.iter().filter(|x| *x > &0).collect();
+
         if sorted_nums.is_empty() {
             return 1;
         }
-        
+
         sorted_nums.sort();
 
-        let max = if sorted_nums[sorted_nums.len()-1] == &std::i32::MAX {
-            *sorted_nums[sorted_nums.len()-1]
-        }
-        else {
-            sorted_nums[sorted_nums.len()-1] + 1
+        let max = if sorted_nums[sorted_nums.len() - 1] == &std::i32::MAX {
+            *sorted_nums[sorted_nums.len() - 1]
+        } else {
+            sorted_nums[sorted_nums.len() - 1] + 1
         };
 
         for i in 1..max {
@@ -26,6 +25,5 @@ impl Solution {
         }
 
         max
-        
     }
 }

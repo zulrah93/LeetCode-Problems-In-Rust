@@ -7,28 +7,20 @@ impl Solution {
     }
 }
 
-fn climb_stairs_with_cache(n : i32, cache : &mut HashMap<i32,i32>) -> i32 {
-    
-    
+fn climb_stairs_with_cache(n: i32, cache: &mut HashMap<i32, i32>) -> i32 {
     if n == 1 {
         1
-    }    
-    else if n == 2 {
+    } else if n == 2 {
         2
-    }
-    else if cache.contains_key(&n) {
+    } else if cache.contains_key(&n) {
         *cache.get(&n).unwrap()
+    } else {
+        let x = climb_stairs_with_cache(n - 1, cache);
+        let y = climb_stairs_with_cache(n - 2, cache);
+
+        cache.insert(n - 1, x);
+        cache.insert(n - 2, y);
+
+        x + y
     }
-    else {
-        
-        let x = climb_stairs_with_cache(n-1, cache);
-        let y = climb_stairs_with_cache(n-2, cache);
-        
-        cache.insert(n-1, x);
-        cache.insert(n-2, y);
-        
-        x+y
-    }
-    
-    
 }

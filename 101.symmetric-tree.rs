@@ -5,7 +5,7 @@
 //   pub left: Option<Rc<RefCell<TreeNode>>>,
 //   pub right: Option<Rc<RefCell<TreeNode>>>,
 // }
-// 
+//
 // impl TreeNode {
 //   #[inline]
 //   pub fn new(val: i32) -> Self {
@@ -16,46 +16,38 @@
 //     }
 //   }
 // }
-use std::rc::Rc;
 use std::cell::RefCell;
+use std::rc::Rc;
 impl Solution {
     pub fn is_symmetric(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-        let mut array1 : Vec<i32> = vec![];
-        let mut array2 : Vec<i32> = vec![];
+        let mut array1: Vec<i32> = vec![];
+        let mut array2: Vec<i32> = vec![];
         if let Some(root_ref) = root {
-            
             let root_node = root_ref.borrow();
             tree_to_array(&root_node.left, &mut array1, false);
             tree_to_array(&root_node.right, &mut array2, true);
-            
+
             array1 == array2
-        }
-        else {
+        } else {
             return true;
         }
     }
 }
 
-
-fn tree_to_array(root: &Option<Rc<RefCell<TreeNode>>>, result : &mut Vec<i32>, mirror : bool) {
-    
+fn tree_to_array(root: &Option<Rc<RefCell<TreeNode>>>, result: &mut Vec<i32>, mirror: bool) {
     if let Some(node_ref) = root {
-        
         let node = node_ref.borrow();
-        
-        
+
         result.push(node.val);
-        
+
         if mirror {
             tree_to_array(&node.left, result, mirror);
             tree_to_array(&node.right, result, mirror);
-        }
-        else {
+        } else {
             tree_to_array(&node.right, result, mirror);
             tree_to_array(&node.left, result, mirror);
         }
-    }
-    else {
+    } else {
         result.push(-101);
     }
-} 
+}
