@@ -7,4 +7,6 @@ All LeetCode problems are done in Rust. They should compile on LeetCode unless t
 They are two scripts one in powershell in case of a Windows or Linux system that has powershell core. Or bash script that does functionally the same thing but for Linux and Unix like systems. Like always make sure to read the script before executing some random script off the internet. Seriously it may not be malicious but there maybe bugs. Never run something without understanding the risks.
 
 
+If you like to take a look at my LeetCode profile you may find it [here](https://leetcode.com/dlope073/)
+
 
