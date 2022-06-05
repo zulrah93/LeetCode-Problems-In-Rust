@@ -1,6 +1,5 @@
 impl Solution {
     pub fn is_match(s: String, p: String) -> bool {
-
         if s == p {
             // Case where the pattern equals the input string
             true
@@ -10,7 +9,6 @@ impl Solution {
         } else {
             is_match_dfs(&s.chars().collect(), 0, &p.chars().collect(), 0) // We call helper method and write our logic to see if the input is a match
         }
-        
     }
 }
 
@@ -23,7 +21,7 @@ enum WildCard {
 
 fn get_wildcard_type(character: &char) -> WildCard {
     match character {
-        '.' => WildCard::Single,
+        '?' => WildCard::Single,
         '*' => WildCard::Any,
         _ => WildCard::None,
     }
@@ -36,16 +34,11 @@ fn is_match_dfs(
     pattern: &Vec<char>,
     pattern_index: usize,
 ) -> bool {
-
-    //Feel free to remove comments if you are planning on playing 💻 or planning on de🪲ing
-
-    // print!(
-    //     "input_index = {} input_length = {} pattern_index = {} pattern_length = {}",
-    //     input_index,
-    //     input.len(),
-    //     pattern_index,
-    //     pattern.len()
-    // );
+    print!(
+        "input_index = {} pattern_index = {} ",
+        input_index,
+        pattern_index,
+    );
 
     if input_index < input.len() {
         if pattern_index >= pattern.len() {
@@ -64,10 +57,10 @@ fn is_match_dfs(
             (pattern_index + 1) == pattern.len()
         }; // Denotes that the index is at the final position
 
-        // println!(
-        //     " wildcard_type = {:?} current_pattern = {} current_input = {}",
-        //     wildcard_type, current_pattern, current_input
-        // );
+        println!(
+            " wildcard_type = {:?} current_pattern = {} current_input = {}",
+            wildcard_type, current_pattern, current_input
+        );
 
         match wildcard_type {
             WildCard::None => {
@@ -89,7 +82,7 @@ fn is_match_dfs(
                     let input_pattern_match = next_pattern == current_input; // Note: This overrides the local variable outside of the match scope; so we keep consistency in the variable names
 
                     return if input_pattern_match {
-                        is_match_dfs(input, input_index + 2, pattern, pattern_index + 2)
+                        is_match_dfs(input, input_index + 1, pattern, pattern_index + 1)
                     } else {
                         is_match_dfs(input, input_index + 1, pattern, pattern_index)
                         // We keep the position at the kleene star
@@ -102,20 +95,20 @@ fn is_match_dfs(
     }
 }
 
-// Test cases taken from LeetCode:
+// Test cases taken from LeetCode
 
 #[test]
-fn example_1() {
+fn case_1() {
     assert_eq!(Solution::is_match("aa".to_string(), "a".to_string()), false);
 }
 
 #[test]
-fn example_2() {
+fn case_2() {
     assert_eq!(Solution::is_match("aa".to_string(), "*".to_string()), true);
 }
 
 #[test]
-fn example_3() {
+fn case_3() {
     assert_eq!(
         Solution::is_match("cb".to_string(), "?a".to_string()),
         false
@@ -123,7 +116,7 @@ fn example_3() {
 }
 
 #[test]
-fn example_4() {
+fn case_4() {
     assert_eq!(
         Solution::is_match("adceb".to_string(), "*a*b".to_string()),
         true
@@ -131,16 +124,22 @@ fn example_4() {
 }
 
 #[test]
-fn example_5() {
+fn case_5() {
     assert_eq!(Solution::is_match("aa".to_string(), "a*".to_string()), true);
 }
 
 #[test]
-fn example_6() {
-    assert_eq!(Solution::is_match("ab".to_string(), ".*".to_string()), true);
+fn case_6() {
+    assert_eq!(
+        Solution::is_match("acdcb".to_string(), "a*c?b".to_string()),
+        false
+    );
 }
 
 #[test]
-fn example_7() {
-    assert_eq!(Solution::is_match("aab".to_string(), "c*a*b".to_string()), true);
+fn case_7() {
+    assert_eq!(
+        Solution::is_match("ab".to_string(), "?*".to_string()),
+        true
+    );
 }
