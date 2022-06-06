@@ -36,8 +36,7 @@ fn is_match_dfs(
 ) -> bool {
     print!(
         "input_index = {} pattern_index = {} ",
-        input_index,
-        pattern_index,
+        input_index, pattern_index,
     );
 
     if input_index < input.len() {
@@ -138,8 +137,5 @@ fn case_6() {
 
 #[test]
 fn case_7() {
-    assert_eq!(
-        Solution::is_match("ab".to_string(), "?*".to_string()),
-        true
-    );
+    assert_eq!(Solution::is_match("ab".to_string(), "?*".to_string()), true);
 }
