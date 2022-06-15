@@ -1,3 +1,7 @@
+/*
+    WORK IN PROGRESS [⚠️ Incomplete Solution ⚠️]
+*/
+
 fn pattern_has_no_wildcard(pattern: &String) -> bool {
     pattern
         .chars()
