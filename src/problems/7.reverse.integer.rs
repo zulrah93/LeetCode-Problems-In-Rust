@@ -1,5 +1,3 @@
-struct Solution {}
-
 static RADIX: i32 = 10;
 
 fn is_out_of_i32_range(result: i64) -> bool {
@@ -49,8 +47,4 @@ impl Solution {
 #[test]
 fn negative_test_case() {
     assert_eq!(Solution::reverse(-123), -321);
-}
-
-fn main() {
-    println!("Scratch Space Used To Write Unit Tests For LeetCode Problem And Enable Lint Space. This Project Isn't Meant To Be Compiled And Run.");
 }
