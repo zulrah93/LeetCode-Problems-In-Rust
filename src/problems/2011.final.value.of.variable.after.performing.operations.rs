@@ -1,10 +1,9 @@
-struct Solution {}
-
-fn evaluate(operation : &str, result : &mut i32) {
+fn evaluate(operation: &str, result: &mut i32) {
     match operation {
+        // Match makes this more elegant in my opinion 😍
         "++X" | "X++" => *result += 1,
         "--X" | "X--" => *result -= 1,
-        _ => ()
+        _ => (),
     }
 }
 
@@ -16,8 +15,4 @@ impl Solution {
         }
         result
     }
-}
-
-fn main() {
-    println!("Scratch Space Used To Write Unit Tests For LeetCode Problem And Enable Lint Space. This Project Isn't Meant To Be Compiled And Run.");
 }
